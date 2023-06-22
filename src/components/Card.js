@@ -1,35 +1,101 @@
 import React, { useState } from "react";
-
-function Card(tour) {
-  
-  const [readMore, setReadMore] = useState(false);
-
-  const description = readMore? tour.tour.info: `${tour.tour.info.substring(0, 200)}....`;
-  function readMoreHandler() {
-    setReadMore(!readMore);
+const data = [
+  {
+    id: 1,
+    name: "Agra",
+    info: "Agra is a city in northern India, known for the iconic Taj Mahal, a stunning white marble mausoleum built by Mughal emperor Shah Jahan in memory of his beloved wife. Agra is also home to several other historic and architectural wonders, including Agra Fort and Fatehpur Sikri.",
+    image: "https://cdn.thecodehelp.in/Agra.jpeg",
+    price: "35,758",
+  },
+  {
+    id: 2,
+    name: "Jaipur",
+    info: `Jaipur is the capital city of the Indian state of Rajasthan, known for its stunning pink-hued buildings and palaces. The city is also known as the "Pink City" due to the color of many of its buildings. Jaipur is famous for its intricate textiles, colorful handicrafts, and delicious cuisine.`,
+    image: "https://cdn.thecodehelp.in/Jaipur.jpeg",
+    price: "82,560",
+  },
+  {
+    id: 3,
+    name: "Goa",
+    info: " Goa is a small state on India's western coast, known for its stunning beaches, vibrant nightlife, and Portuguese-influenced architecture. The state is also known for its spicy seafood dishes and unique cultural traditions.",
+    image: "https://cdn.thecodehelp.in/Goa.jpeg",
+    price: "29,695",
+  },
+  {
+    id: 4,
+    name: "Varanasi",
+    info: "Varanasi is a holy city in northern India, situated on the banks of the sacred river Ganges. The city is a major pilgrimage site for Hindus and is famous for its ancient temples, winding alleyways, and colorful festivals.",
+    image: "https://cdn.thecodehelp.in/Varanasi.jpeg",
+    price: "31,095",
+  },
+  {
+    id: 5,
+    name: "Darjeeling",
+    info: "Starting in the colorful port city of Gdańsk, you'll escape the crowds and embrace the understated elegance of ready-for-prime-time Poland for 10 days. With an expert Rick Steves guide at your side, you'll experience mighty Malbork castle, the cobbly-cute village of Toruń, Poland's contemporary capital of Warsaw, the spiritual Jasna Góra Monastery, and charming Kraków — Poland's finest city. In this land of surprises — so trendy and hip, yet steeped in history — there's so much to discover. Join us for the Best of Poland in 10 Days!",
+    image: "https://cdn.thecodehelp.in/Darjeeling.jpeg",
+    price: "78,595",
+  },
+  {
+    id: 6,
+    name: "Jaisalmer",
+    info: "Jaisalmer is a city in the Indian state of Rajasthan, known for its stunning sandstone architecture and its location in the heart of the Thar Desert. The city is home to several impressive palaces and fortresses, as well as unique cultural traditions and handicrafts.",
+    image: "https://cdn.thecodehelp.in/Jaisalmer.jpeg",
+    price: "68,595",
+  },
+  {
+    id: 7,
+    name: "Kochi",
+    info: "Kochi is a port city in the Indian state of Kerala, known for its historic connections to trade and commerce. The city is home to several stunning churches, synagogues, and mosques, as well as a rich culinary tradition that blends Indian, Portuguese, and other influences.",
+    image: "https://cdn.thecodehelp.in/Kochi.jpeg",
+    price: "68,595",
+  },
+  {
+    id: 8,
+    name: "Kochi",
+    info: "Kochi is a port city in the Indian state of Kerala, known for its historic connections to trade and commerce. The city is home to several stunning churches, synagogues, and mosques, as well as a rich culinary tradition that blends Indian, Portuguese, and other influences.",
+    image: "https://cdn.thecodehelp.in/Kochi.jpeg",
+    price: "68,595",
   }
+];
 
+function Card() {
+  
+  
+  // const [readMore, setReadMore] = useState(false);
 
- const[newData, setNewData] = useState(tour.tour);
- let newDataHandlerBtn=()=>{
+  // const description = readMore? data.info: `${data.info.substring(0, 200)}....`;
+  // function readMoreHandler() {
+  //   setReadMore(!readMore);
+  // }
+
+// const init ={
+//   id : Number,
+//   name : "strinig",
+// }
+ const[newData, setNewData] = useState(data);
+ let newDataHandlerBtn=(id)=>{
   let newId= newData.id;
-  console.log(newId);
+  const pdateddted=newData.filter((item)=> item.id !==newId);
+  setNewData(pdateddted)
+  // setReadMore(!rea)
  }
 
+//  setNewData( newData.filter(item => item.id !== newDataHandlerBtn()))
+ 
 
   return (
-    <div className="w-[18rem]  flex flex-col gap-3 border p-4 rounded-lg bg-slate-100">
-      <img className="rounded-lg" src={tour.tour.image} alt="tour_Img" />
-      <h1 className="text-xl font-bold text-blue-800">${tour.tour.price}</h1>
-      <h1 className="font-mono text-xl font-bold">{tour.tour.name}</h1>
+    <div className="w-[18rem]  flex flex-col gap-3  p-4 rounded-lg bg-slate-100">
+      <img className="rounded-lg" src={newData.image} alt="tour_Img" />
+      <h1 className="text-xl font-bold text-blue-800">${newData.price}</h1>
+      <h1 className="font-mono text-xl font-bold">{newData.name}</h1>
       <h1 className="text-sm text-gray-900">
-        {description}
-        <span
+        {newData.info}
+        {/* <span
           className="text-blue-700 cursor-pointer"
           onClick={readMoreHandler}
         >
           {readMore ? `  Show Less` : `Read More`}
-        </span>
+        </span> */}
       </h1>
       <button className="rounded-lg bg-orange-300 h-[3rem] text-lg font-mono font-bold text-orange-800" onClick={newDataHandlerBtn}>
         Not Interested
